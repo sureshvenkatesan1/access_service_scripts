@@ -52,7 +52,10 @@ Create the following in the target JFrog Platform Instance:
 
 - Next create the repos in **repositories-non-unique.list** in the target JPD using the
 ```text
-jf rt transfer-config-merge source-server target-server --include-repos "semicolon separated list of repos"
+semicolon_separated_list_of_repos=$(tr '\n' ';' < repositories-non-unique.list)
+
+jf rt transfer-config-merge source-server target-server --include-repos "$semicolon_separated_list_of_repos"
+
 ```
 
 or
