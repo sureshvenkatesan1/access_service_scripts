@@ -54,12 +54,14 @@ Create the following in the target JFrog Platform Instance:
 ```text
 semicolon_separated_list_of_repos=$(tr '\n' ';' < repositories-non-unique.list)
 
-jf rt transfer-config-merge source-server target-server --include-repos "$semicolon_separated_list_of_repos"
+jf rt transfer-config-merge source-server target-server --include-repos "$semicolon_separated_list_of_repos" --include-projects "sv-test"
 
 ```
 
 or
 using https://github.com/shivaraman83/security-entities-migration/blob/main/create-repos.sh
+
+Note: The "--include-projects" will transfer only the project and not the entities associated with the project , like environments , roles etc.
 
 Note: All these scripts use the old security APIs.
 The scripts that use the newer /access/api/v2 scripts to manage users, groups, permissions are under  
