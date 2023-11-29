@@ -1,3 +1,5 @@
+## Generate list of repositories and their associated permissions for an Artifactory user and group list
+
 If you have a list of users   in **users-test.list** file and groups in **groups-unique.list** file then you can 
 generate the repo and permission list using below script 
 ( taken from [GetReposAssignedToUsers.sh](GetReposAssignedToUsers.sh) that was in https://github.com/shivaraman83/security-entities-migration/blob/main/GetReposAssignedToUsers.sh )
@@ -54,7 +56,7 @@ Create the following in the target JFrog Platform Instance:
 ```text
 semicolon_separated_list_of_repos=$(tr '\n' ';' < repositories-non-unique.list)
 
-jf rt transfer-config-merge source-server target-server --include-repos "$semicolon_separated_list_of_repos" --include-projects "sv-test"
+jf rt transfer-config-merge source-server target-server --include-repos "$semicolon_separated_list_of_repos" --include-projects ""
 
 ```
 
