@@ -33,7 +33,7 @@ curl -XGET -u $USER_NAME:$SOURCE_JPD_AUTH_TOKEN "${SOURCE_JPD_URL}/artifactory/a
 ### Run the curl API 
 while IFS= read -r username; do
     echo -e "Download JSON for ====> $username <===="
-    curl -XGET -u $USER_NAME:$SOURCE_JPD_AUTH_TOKEN "${SOURCE_JPD_URL}/artifactory/api/security/users/$username?password=true" -s > "$username.json"
+    curl -XGET -u $USER_NAME:$SOURCE_JPD_AUTH_TOKEN "${SOURCE_JPD_URL}/artifactory/api/security/users/$username" -s > "$username.json"
     echo -e "\n"
     echo -e "Uploading user ====> $username <==== to ${TARGET_JPD_URL}"
     curl -XPUT -u $USER_NAME:$TARGET_JPD_AUTH_TOKEN "${TARGET_JPD_URL}/artifactory/api/security/users/$username" -d @"$username.json" -s -H 'Content-Type: application/json'

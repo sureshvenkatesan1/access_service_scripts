@@ -22,7 +22,7 @@ curl -XGET -H "Authorization: Bearer $JPD_AUTH_TOKEN" "${JPD_URL}/access/api/v2/
 ### Run the curl API 
 while IFS= read -r username; do
     echo -e "Download JSON for ====> $username <===="
-    curl -XGET -H "Authorization: Bearer $JPD_AUTH_TOKEN" "${JPD_URL}/access/api/v2/users/$username?password=true" -s > "$username.json"
+    curl -XGET -H "Authorization: Bearer $JPD_AUTH_TOKEN" "${JPD_URL}/access/api/v2/users/$username" -s > "$username.json"
     echo -e "\n"
     user_data="jq '. | .\"$username\"' ../sykrl-users.json | xargs"
     email_data="echo $username | cut -d @ -f1"
